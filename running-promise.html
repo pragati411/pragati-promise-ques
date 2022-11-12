@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  // function runPromise() {
+  //   return new Promise((reply, reject) => {
+  //     reply("Hello world");
+  //   });
+  // }
+
+  // console.log("hii");
+
+  // setTimeout(() => {
+  //   console.log("pragati");
+  // }, 4000);
+
+  // const runP = async () => {
+  //   console.log("abcd");
+  //   const result = await runPromise().catch((err) => console.log(err));
+  //   console.log("pqr");
+  //   console.log("AsyncAwait:", result);
+  // };
+
+  // console.log("B");
+
+  // runP();
+
+  // console.log("C");
+
+  // runPromise().then((data) => {
+  //   console.log("shukla");
+  //   console.log("Normal Promise.then:", data);
+  // });
+
+  // console.log("D");
+  // setTimeout(() => {
+  //   console.log("my name is pragati");
+  // }, 0);
+
+  // console.log("satna");
+
+  function restaurantCustomer() {
+    return getCustomer()
+      .then((customer) => {
+        return getOrder(customer);
+      })
+      .then((order) => {
+        return prepareFood(order);
+      })
+      .then((meal) => {
+        return serveFood(meal);
+      })
+      .then((food) => {
+        return eatFood(food, customer);
+      })
+      .catch(showError);
+  }
+
+  async function restaurantCustomer() {
+    return getCustomer();
+  }
+
+  const runp = async () => {
+    try {
+      const customer = await getCustomer();
+      const order = await getOrder(customer);
+      const meal = await prepareFood(order);
+      const food = await serveFood(meal);
+      const eat = await eatFood(food, customer);
+
+      return eat;
+    } catch (err) {
+      return null;
+    }
+  };
+
+  runp();
+
+  function ex4() {
+    return fetch("https://microsoft.com").then(res).then(res2);
+  }
+  function res(result) {
+    return result.ok;
+  }
+
+  function res2(result) {
+    console.log(result);
+  }
+
+  async function ex4() {
+    const result = await fetch("https://microsoft.com");
+    const result2 = await res(result);
+    return res2(result2);
+  }
+
+  function res(result) {
+    return result.ok;
+  }
+
+  function res2(result) {
+    console.log(result);
+  }
+
+  const promise = new Promise((res) => res(2));
+  promise;
+
+  function ex1() {
+    return fetch("https://microsoft.com").then((result) => result.ok);
+  }
+  async function ex1() {
+    const result = await fetch("'https://microsoft.com");
+    return result.ok;
+  }
+
+  function ex2() {
+    return fetch("https://microsoft.com").then(
+      (result) => console.log(result),
+      (rej) => console.log("error", rej)
+    );
+  }
+
+  async function ex2() {
+    let result;
+    try {
+      result = await fetch("https://microsoft.com");
+    } catch (rej) {
+      return console.log("error:", rej);
+    }
+    return result.ok;
+  }
+  function ex3() {
+    return fetch("https://microsoft.com")
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
+  }
+  async function ex3() {
+    let result;
+    try {
+      result = await fetch("https://microsoft.com");
+       console.log(result); // ask
+    } catch (err) {
+       console.log(err);
+    }
+  }
+  function ex5() {
+    return fetch("https://microsoft.com")
+      .then((res) => console.log(res))
+      .catch((err) => console.log("err"))
+      .catch((err2) => console.log("err2", err2));
+  }
+  async function ex5() {
+    try {
+      let res;
+      try {
+        res = await fetch("https://microsoft.com");
+        return console.log(res);
+      } catch (err) {
+        return console.log("err");
+      }
+    } catch (err2) {
+      return console.log("err2");
+    }
+  }
+
+  function ex6() {
+    return Promise.all([
+      fetch("https://microsoft.com"),
+      fetch("https://microsoft.com"),
+      fetch("https://youtube.com"),
+    ]).then(function (vals) {
+      vals.forEach(console.log);
+    });
+  }
+  async function ex6() {
+    let vals = await Promise.all([
+      fetch("https://microsoft.com"),
+      fetch("https://microsoft.com"),
+      fetch("https://youtube.com"),
+    ]);
+    return vals.forEach(console.log);
+  }
+  function ex7() {
+    return Promise.race([
+      fetch("https://microsoft.com"),
+      fetch("https://microsoft.com"),
+      fetch("https://youtube.com"),
+    ]).then((val) => console.log(val));
+  }
+  async function ex7() {
+    let val = await Promise.race([
+      fetch("https://microsoft.com"),
+      fetch("https://microsoft.com"),
+      fetch("https://youtube.com"),
+    ]);
+    return console.log(val);
+  }
+  function ex8() {
+    let blob = fetch("https://typescriptlang.org").then((resp) =>
+      console.log(resp)
+    );
+    return blob;
+  }
+  async function ex8() {
+    let result = await fetch("https://typescriptlang.org");
+    let result2 = await result;
+    console.log(result2);
+  }
+  function ex9() {
+    return fetch("https://typescriptlang.org").then((resp) =>
+      console.log(resp)
+    );
+  }
+  async function ex9() {
+    let res = await fetch("https://typescriptlang.org");
+    let res2 = await res;
+    console.log(res2);
+  }
+</script>
